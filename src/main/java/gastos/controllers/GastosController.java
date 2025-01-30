@@ -33,7 +33,6 @@ public class GastosController {
         ResultSet rs = s.executeQuery ( "Select id,nombre,monto,estado from Registro");
         //Creamos el JSON
         List<Registro> registroList = new ArrayList<>();
-        System.out.println("antes error");
         while (rs.next()) {
             System.out.println ("agregamos data al listado de ojbetos de escenario");
             Registro itemRegistro = new Registro(
@@ -44,8 +43,6 @@ public class GastosController {
             );
             registroList.add(itemRegistro);
         };
-        System.out.println("despues error");
-
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(registroList);
         return json;
