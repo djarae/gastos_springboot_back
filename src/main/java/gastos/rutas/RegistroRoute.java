@@ -1,6 +1,5 @@
-package gastos.controllers;
-import gastos.queries.GastosQuery;
-import gastos.serializers.GastosSerializer;
+package gastos.rutas;
+import gastos.controllers.RegistroController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,22 +8,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import gastos.configs.BDConfig;
 
 @RestController
-@RequestMapping("apiGastos")
-public class GastosController {
-    //Constructor:
-    public  GastosController()
+@RequestMapping("registros")
+public class RegistroRoute {
+    public RegistroRoute()
     {
       BDConfig.ConexionDB();
     }
 
     @GetMapping(value = "/LocalDeploy" )
     public String testLocalDeploy() {
-        return "Ruta => http://127.0.0.1:8080/apiGastos/LocalDeploy";
+        return "Ruta => http://127.0.0.1:8080/registros/LocalDeploy";
     }
-    @GetMapping("/GetListRegistros")
+    @GetMapping("/get")
     public String GetListRegistros() throws SQLException, JsonProcessingException {
-        ResultSet rs = GastosQuery.getListadoRegistros();//SQL obtener data
-        return GastosSerializer.serializeRegistro(rs);//ok
+        return RegistroController.getRegistros();
     }
 
 }

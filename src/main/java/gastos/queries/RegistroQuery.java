@@ -3,11 +3,7 @@ import gastos.configs.BDConfig;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
-
-public class GastosQuery {
-
+public class RegistroQuery {
     public static ResultSet getListadoRegistros()  throws SQLException{
         Statement s = BDConfig.Conexion.createStatement();
         ResultSet rs = s.executeQuery ( "Select id,nombre,monto,estado from Registro");
